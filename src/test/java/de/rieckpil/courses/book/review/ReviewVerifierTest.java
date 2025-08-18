@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static de.rieckpil.courses.book.review.RandomReviewParameterResolverExtension.RandomReview;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(RandomReviewParameterResolverExtension.class)
 class ReviewVerifierTest {
@@ -55,7 +56,13 @@ class ReviewVerifierTest {
   }
 
   @Test
-  void shouldPassWhenReviewIsGood() {}
+  void shouldPassWhenReviewIsGood() {
+    String review = "I would like to recommend this book as it " +
+      "has really high quality!";
+
+    boolean result = reviewVerifier.doesMeetQualityStandards(review);
+    assertTrue(result, "ReviewVerifier did not pass a good review");
+  }
 
   @Test
   void shouldPassWhenReviewIsGoodHamcrest() {}
